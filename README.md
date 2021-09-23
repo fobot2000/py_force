@@ -44,3 +44,11 @@ status, data = sf.query_account(id)
 
 status, data = sf.delete_account(id)
 ```
+
+### Running Tests
+
+Tests can be run by storing authentication in environment variables and running `tests/test_py_force.py`.
+
+```
+TEST_DOMAIN='domian' CLIENT_ID='id' CLIENT_SECRET='secret' USERNAME='username' PASSWORD='password' SECURITY_TOKEN='security_token' python -m unittest tests/test_py_force.py
+```
