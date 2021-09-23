@@ -65,7 +65,7 @@ class SFSession(object):
         """Gets the resources available to the session
         :return: An HTTP status code and response data
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token) }
+        headers = {'Authorization': 'Bearer {}'.format(self.token)}
         uri = self.api_url
         r = requests.get(uri, headers=headers)
         return r.status_code, r.json()
@@ -74,16 +74,16 @@ class SFSession(object):
     def get_objects(self, modified_since=None, unmodified_since=None):
         """Gets the objects available to the session
 
-        :param modified_since: A value in the form 
+        :param modified_since: A value in the form
         'EEE, dd, MMM yyyy HH:mm:ss z', that returns records that have been
         modified after the provided date and time
-        :param unmodified_since: A value in the form 
+        :param unmodified_since: A value in the form
         'EEE, dd, MMM yyyy HH:mm:ss z', that returns records that have not
         been modified after the provided date and time
 
         :return: An HTTP status code and response data
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token) }
+        headers = {'Authorization': 'Bearer {}'.format(self.token)}
         payload = {}
         if modified_since is not None:
             payload['If-Modified-Since'] = modified_since
@@ -94,20 +94,23 @@ class SFSession(object):
         return r.status_code, r.json()
 
     @_auth_required
-    def describe_object(self, name, modified_since=None, unmodified_since=None):
+    def describe_object(self,
+                        name,
+                        modified_since=None,
+                        unmodified_since=None):
         """Gets metadata on the requested object
 
         :param name: The name of the object to describe
-        :param modified_since: A value in the form 
+        :param modified_since: A value in the form
         'EEE, dd, MMM yyyy HH:mm:ss z', that returns records that have been
         modified after the provided date and time
-        :param unmodified_since: A value in the form 
+        :param unmodified_since: A value in the form
         'EEE, dd, MMM yyyy HH:mm:ss z', that returns records that have not
         been modified after the provided date and time
 
         :return: An HTTP status code and response data
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token), }
+        headers = {'Authorization': 'Bearer {}'.format(self.token)}
         payload = {}
         if modified_since is not None:
             payload['If-Modified-Since'] = modified_since
@@ -124,8 +127,8 @@ class SFSession(object):
         :param data: A JSON object holding account metadata
         :return: An HTTP status code and response data describing the account
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token), 
-                    'Content-Type': 'application/json'}
+        headers = {'Authorization': 'Bearer {}'.format(self.token),
+                   'Content-Type': 'application/json'}
         uri = self.api_url + "/sobjects/Account/"
         r = requests.post(uri, headers=headers, data=data)
         return r.status_code, r.json()
@@ -137,7 +140,7 @@ class SFSession(object):
         :param id: The ID of the object to query
         :return: An HTTP status code and response data describing the account
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token) }
+        headers = {'Authorization': 'Bearer {}'.format(self.token)}
         uri = self.api_url + "/sobjects/Account/{}".format(id)
         r = requests.get(uri, headers=headers)
         return r.status_code, r.json()
@@ -150,8 +153,8 @@ class SFSession(object):
         :param data: A JSON object holding account metadata
         :return: An HTTP status code and None
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token), 
-                    'Content-Type': 'application/json'}
+        headers = {'Authorization': 'Bearer {}'.format(self.token),
+                   'Content-Type': 'application/json'}
         uri = self.api_url + "/sobjects/Account/{}".format(id)
         print(uri)
         r = requests.patch(uri, headers=headers, data=data)
@@ -164,7 +167,7 @@ class SFSession(object):
         :param id: The ID of the object to query
         :return: An HTTP status code and None
         """
-        headers = { 'Authorization': 'Bearer {}'.format(self.token) }
+        headers = {'Authorization': 'Bearer {}'.format(self.token)}
         uri = self.api_url + "/sobjects/Account/{}".format(id)
         r = requests.delete(uri, headers=headers)
         return r.status_code, None

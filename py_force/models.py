@@ -8,7 +8,7 @@ class Account(BaseModel):
     """
     Name: Optional[str] = ''
     NumberOfEmployees: Optional[int] = 0
-    ShippingState: Optional[str] = '' 
+    ShippingState: Optional[str] = ''
     ShippingPostalCode: Optional[str] = ''
     ShippingCity: Optional[str] = ''
     ShippingStreet: Optional[str] = ''
